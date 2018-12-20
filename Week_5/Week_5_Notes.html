@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Week_5_Notes.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="week-5">Week 5</h1>
+<h2 id="overview">Overview</h2>
+<p>In week 5, we will be exploring simple data structures in Python, specifically lists. Lists are a structure for holding a series of variables and you will find them to be incredibly useful as we build more complicated programs.</p>
+<p>We will also begin to look at how computers are able to manipulate binary and how memory storage works inside of a computer.</p>
+<h2 id="objectives">Objectives</h2>
+<ul>
+<li>Explain how logic gates are used to add binary numbers</li>
+<li>Understand the difference between Kilobytes, Megabytes, and Mebibytes</li>
+<li>Explain the different types of memory used in the computer and the reason for each type</li>
+<li>Use Python lists in programs and understand their use</li>
+<li>Be familiar with Strings and Tuples</li>
+</ul>
+<h2 id="activities-and-assignments">Activities and Assignments</h2>
+<ul>
+<li>Week 5: Discussion - Memory and Mebibytes</li>
+<li>Week 5: Assignment - Programming with Lists</li>
+<li>Week 5: Self-Paced Assignment</li>
+</ul>
+<h2 id="lesson">Lesson</h2>
+<h3 id="storage-and-memory">Storage and Memory</h3>
+<ul>
+<li>The <strong>Central Processing Unit (CPU)</strong> has &quot;registers&quot; that allow it to store the limited amount of data that the CPU is actively working with</li>
+<li>This data could be intructions or data to be manipulated</li>
+<li>Because the size of these registers is so limited, other kinds of memory are needed</li>
+</ul>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/p3q5zWCw8J4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p><strong>Question</strong>: Which of the following is the fastest?</p>
+<p>A. DRAM</p>
+<p>B. Hard Drive</p>
+<p>C. SRAM</p>
+<p>D. SSD</p>
+<p>E. CD-ROM</p>
+<p><strong>Answer</strong>: <strong>C</strong> - SRAM</p>
+<p><strong>Question</strong>: An unopened photo is kept in the ___ of a computer?</p>
+<p>A. CPU's cache</p>
+<p>B. Hard Drive</p>
+<p>C. RAM</p>
+<p>D. None of the above</p>
+<p><strong>Answer</strong>: <strong>B.</strong> - Hard Drive</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/C_NbeOaUtog" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p><strong>Question</strong>: Which of the following is an example of volatile memory?</p>
+<p>A. Hard Drive</p>
+<p>B. DRAM</p>
+<p>C. SSD</p>
+<p>D. CD-ROM</p>
+<p><strong>Answer</strong>: CD-ROM</p>
+<h3 id="megabytes-and-mebibytes">Megabytes and Mebibytes</h3>
+<ul>
+<li>Recall that 1 byte = 8 bits</li>
+</ul>
+<h4 id="word">Word</h4>
+<ul>
+<li>Older computers originally were designed to do operations 8 bits at a time</li>
+<li>Modern processors are typically 32-bit or 64-bit</li>
+<li>The term <strong>&quot;Word&quot;</strong> refers to the chunks of the bits the processor is designed to operate on
+<ul>
+<li>So usually a &quot;Word&quot; is either 32 or 64 bits in size but it depends on the architecture of the specific machine</li>
+</ul>
+</li>
+</ul>
+<h4 id="kilobyte">Kilobyte</h4>
+<ul>
+<li>A <strong>Kilobyte</strong> is approximately 1000 bytes</li>
+<li>It is aproximately because on most computer hardware, a Kilobyte is 1024 bytes ($2^10=1-24$)</li>
+</ul>
+<h4 id="megabyte">Megabyte</h4>
+<ul>
+<li>A <strong>Megabyte</strong> is approximately 1000 Kilobytes</li>
+<li>Actually about 1024 kilobytes</li>
+<li>So 1 megabyte is 1,048,576 bytes since 1024 x 1024 = 1048576</li>
+</ul>
+<h4 id="gigabyte">Gigabyte</h4>
+<ul>
+<li>A <strong>Gigabyte</strong> is approximately 1024 Megabytes</li>
+</ul>
+<h4 id="terabyte">Terabyte</h4>
+<ul>
+<li>A <strong>Terabyte</strong> is approximately 1024 Gigabytes</li>
+</ul>
+<h4 id="petabyte">Petabyte</h4>
+<ul>
+<li>A <strong>Petabyte</strong> is approximately 1024 Terabytes</li>
+</ul>
+<h3 id="why-approximately-and-what-is-a-kibibyte">Why approximately? And what is a Kibibyte</h3>
+<ul>
+<li>The term <strong>kilo</strong> in any context outside of computer science means 1000 not 1024</li>
+<li>The IEEE proposed that we use new terms that were more precise:
+<ul>
+<li><strong>kilobyte (kB)</strong> -&gt; <strong>kibibyte (KiB)</strong></li>
+<li><strong>megabyte (MB)</strong> -&gt; <strong>mebibyte (MiB)</strong></li>
+<li><strong>gigabyte (GB)</strong> -&gt; <strong>gibibyte (GiB)</strong></li>
+<li><strong>terrabyte (TB)</strong> -&gt; <strong>tebibyte (TiB)</strong></li>
+</ul>
+</li>
+<li>These terms always refer to the base 2 value</li>
+<li>However, rarely used in practice</li>
+</ul>
+<h3 id="how-binary-and-logic-gates-work-in-a-computer">How Binary and Logic Gates Work in a Computer</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VBDoT8o4q00" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br>
+<p><strong>How transistors work:</strong></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/WhNyURBiJcU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h3 id="the-list-data-type">The List Data Type</h3>
+<ul>
+<li>A <strong>list</strong> is a value that contains multiple values in an ordered sequence</li>
+<li>Values inside the list are called <strong>items</strong></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-meta">&gt;&gt;&gt; </span>[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>[<span class="hljs-string">'cat'</span>, <span class="hljs-string">'bat'</span>, <span class="hljs-string">'rat'</span>, <span class="hljs-string">'elephant'</span>]
+[<span class="hljs-string">'cat'</span>, <span class="hljs-string">'bat'</span>, <span class="hljs-string">'rat'</span>, <span class="hljs-string">'elephant'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>[<span class="hljs-string">'hello'</span>, <span class="hljs-number">3.1415</span>, <span class="hljs-keyword">True</span>, <span class="hljs-keyword">None</span>, <span class="hljs-number">42</span>]
+[<span class="hljs-string">'hello'</span>, <span class="hljs-number">3.1415</span>, <span class="hljs-keyword">True</span>, <span class="hljs-keyword">None</span>, <span class="hljs-number">42</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam = [<span class="hljs-string">'cat'</span>, <span class="hljs-string">'bat'</span>, <span class="hljs-string">'rat'</span>, <span class="hljs-string">'elephant'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam
+[<span class="hljs-string">'cat'</span>, <span class="hljs-string">'bat'</span>, <span class="hljs-string">'rat'</span>, <span class="hljs-string">'elephant'</span>]
+</div></code></pre>
+<h3 id="getting-individual-values-in-a-list-with-indexes">Getting Individual Values in a List with Indexes</h3>
+<img src="list_selecting.PNG" height="50%" width="50%">
+<pre class="hljs"><code><div><span class="hljs-meta">&gt;&gt;&gt; </span>spam = [<span class="hljs-string">'cat'</span>, <span class="hljs-string">'bat'</span>, <span class="hljs-string">'rat'</span>, <span class="hljs-string">'elephant'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam[<span class="hljs-number">0</span>]
+<span class="hljs-string">'cat'</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam[<span class="hljs-number">1</span>]
+<span class="hljs-string">'bat'</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam[<span class="hljs-number">2</span>]
+<span class="hljs-string">'rat'</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam[<span class="hljs-number">3</span>]
+<span class="hljs-string">'elephant'</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>[<span class="hljs-string">'cat'</span>, <span class="hljs-string">'bat'</span>, <span class="hljs-string">'rat'</span>, <span class="hljs-string">'elephant'</span>][<span class="hljs-number">3</span>]
+<span class="hljs-string">'elephant'</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">'Hello '</span> + spam[<span class="hljs-number">0</span>]
+<span class="hljs-string">'Hello cat'</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">'The '</span> + spam[<span class="hljs-number">1</span>] + <span class="hljs-string">' ate the '</span> + spam[<span class="hljs-number">0</span>] + <span class="hljs-string">'.'</span>
+<span class="hljs-string">'The bat ate the cat.'</span>
+</div></code></pre>
+<ul>
+<li>Python will give an index error if you use an index that exceeds the number of values in your list</li>
+</ul>
+<pre class="hljs"><code><div>spam = [<span class="hljs-string">'cat'</span>, <span class="hljs-string">'bat'</span>, <span class="hljs-string">'rat'</span>, <span class="hljs-string">'elephant'</span>]
+spam[<span class="hljs-number">10000</span>]
+</div></code></pre>
+<pre class="hljs"><code><div>Traceback (most recent call last):
+File &quot;&lt;pyshell#9&gt;&quot;, line 1, in &lt;module&gt;
+spam[10000]
+IndexError: list index out of range
+</div></code></pre>
+<ul>
+<li>Lists can also contain other list values</li>
+</ul>
+<pre class="hljs"><code><div>&gt;&gt;&gt;spam = [[<span class="hljs-string">'cat'</span>, <span class="hljs-string">'bat'</span>], [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>, <span class="hljs-number">50</span>]]
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam[<span class="hljs-number">0</span>]
+[<span class="hljs-string">'cat'</span>, <span class="hljs-string">'bat'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]
+<span class="hljs-string">'bat'</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam[<span class="hljs-number">1</span>][<span class="hljs-number">4</span>]
+<span class="hljs-number">50</span>
+</div></code></pre>
+<ul>
+<li>You can also use negative indexes to select items from the end of the list</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-meta">&gt;&gt;&gt; </span>spam = [<span class="hljs-string">'cat'</span>, <span class="hljs-string">'bat'</span>, <span class="hljs-string">'rat'</span>, <span class="hljs-string">'elephant'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam[<span class="hljs-number">-1</span>]
+<span class="hljs-string">'elephant'</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam[<span class="hljs-number">-3</span>]
+<span class="hljs-string">'bat'</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">'The '</span> + spam[<span class="hljs-number">-1</span>] + <span class="hljs-string">' is afraid of the '</span> + spam[<span class="hljs-number">-3</span>] + <span class="hljs-string">'.'</span>
+<span class="hljs-string">'The elephant is afraid of the bat.'</span>
+</div></code></pre>
+<h3 id="getting-sublists-with-slices">Getting Sublists with Slices</h3>
+<ul>
+<li>
+<p>Just as an index can get a single value from a list, a <strong>slice</strong> can get several values from a list, in the form of a new list</p>
+</li>
+<li>
+<p>A slice goes up to, but will not include, the value at the seocnd index</p>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-meta">&gt;&gt;&gt; </span>spam = [<span class="hljs-string">'cat'</span>, <span class="hljs-string">'bat'</span>, <span class="hljs-string">'rat'</span>, <span class="hljs-string">'elephant'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam[<span class="hljs-number">0</span>:<span class="hljs-number">4</span>]
+[<span class="hljs-string">'cat'</span>, <span class="hljs-string">'bat'</span>, <span class="hljs-string">'rat'</span>, <span class="hljs-string">'elephant'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam[<span class="hljs-number">1</span>:<span class="hljs-number">3</span>]
+[<span class="hljs-string">'bat'</span>, <span class="hljs-string">'rat'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam[<span class="hljs-number">0</span>:<span class="hljs-number">-1</span>]
+[<span class="hljs-string">'cat'</span>, <span class="hljs-string">'bat'</span>, <span class="hljs-string">'rat'</span>]
+</div></code></pre>
+<ul>
+<li>You can leave out one or both of the indexes on either side of the colon in the slice</li>
+<li>Leaving out the first index is the same as using <code>0</code></li>
+<li>Leaving out the last index is the same as using the length of the list</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-meta">&gt;&gt;&gt; </span>spam = [<span class="hljs-string">'cat'</span>, <span class="hljs-string">'bat'</span>, <span class="hljs-string">'rat'</span>, <span class="hljs-string">'elephant'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam[:<span class="hljs-number">2</span>]
+[<span class="hljs-string">'cat'</span>, <span class="hljs-string">'bat'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam[<span class="hljs-number">1</span>:]
+[<span class="hljs-string">'bat'</span>, <span class="hljs-string">'rat'</span>, <span class="hljs-string">'elephant'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam[:]
+[<span class="hljs-string">'cat'</span>, <span class="hljs-string">'bat'</span>, <span class="hljs-string">'rat'</span>, <span class="hljs-string">'elephant'</span>]
+</div></code></pre>
+<h3 id="getting-a-list%E2%80%99s-length-with-len">Getting a List’s Length with len()</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">&gt;&gt;&gt; </span>spam = [<span class="hljs-string">'cat'</span>, <span class="hljs-string">'dog'</span>, <span class="hljs-string">'moose'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>len(spam)
+<span class="hljs-number">3</span>
+</div></code></pre>
+<h3 id="changing-values-in-a-list-with-indexes">Changing Values in a List with Indexes</h3>
+<pre class="hljs"><code><div>&gt;&gt;&gt;spam = [<span class="hljs-string">'cat'</span>, <span class="hljs-string">'bat'</span>, <span class="hljs-string">'rat'</span>, <span class="hljs-string">'elephant'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam[<span class="hljs-number">1</span>] = <span class="hljs-string">'aardvark'</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam
+[<span class="hljs-string">'cat'</span>, <span class="hljs-string">'aardvark'</span>, <span class="hljs-string">'rat'</span>, <span class="hljs-string">'elephant'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam[<span class="hljs-number">2</span>] = spam[<span class="hljs-number">1</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam
+[<span class="hljs-string">'cat'</span>, <span class="hljs-string">'aardvark'</span>, <span class="hljs-string">'aardvark'</span>, <span class="hljs-string">'elephant'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam[<span class="hljs-number">-1</span>] = <span class="hljs-number">12345</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam
+[<span class="hljs-string">'cat'</span>, <span class="hljs-string">'aardvark'</span>, <span class="hljs-string">'aardvark'</span>, <span class="hljs-number">12345</span>]
+</div></code></pre>
+<h3 id="list-concatenation-and-list-replication">List Concatenation and List Replication</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">&gt;&gt;&gt; </span>[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] + [<span class="hljs-string">'A'</span>, <span class="hljs-string">'B'</span>, <span class="hljs-string">'C'</span>]
+[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-string">'A'</span>, <span class="hljs-string">'B'</span>, <span class="hljs-string">'C'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>[<span class="hljs-string">'X'</span>, <span class="hljs-string">'Y'</span>, <span class="hljs-string">'Z'</span>] * <span class="hljs-number">3</span>
+[<span class="hljs-string">'X'</span>, <span class="hljs-string">'Y'</span>, <span class="hljs-string">'Z'</span>, <span class="hljs-string">'X'</span>, <span class="hljs-string">'Y'</span>, <span class="hljs-string">'Z'</span>, <span class="hljs-string">'X'</span>, <span class="hljs-string">'Y'</span>, <span class="hljs-string">'Z'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam = spam + [<span class="hljs-string">'A'</span>, <span class="hljs-string">'B'</span>, <span class="hljs-string">'C'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam
+[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-string">'A'</span>, <span class="hljs-string">'B'</span>, <span class="hljs-string">'C'</span>]
+</div></code></pre>
+<h3 id="removing-values-from-lists-with-del-statements">Removing Values from Lists with del Statements</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">&gt;&gt;&gt; </span>spam = [<span class="hljs-string">'cat'</span>, <span class="hljs-string">'bat'</span>, <span class="hljs-string">'rat'</span>, <span class="hljs-string">'elephant'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">del</span> spam[<span class="hljs-number">2</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam
+[<span class="hljs-string">'cat'</span>, <span class="hljs-string">'bat'</span>, <span class="hljs-string">'elephant'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">del</span> spam[<span class="hljs-number">2</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam
+[<span class="hljs-string">'cat'</span>, <span class="hljs-string">'bat'</span>]
+</div></code></pre>
+<h3 id="working-with-lists">Working with Lists</h3>
+<ul>
+<li>Rather than create a new variable for many values, it is often more effective to use a list to store values</li>
+<li>Imagine the following inneficient program:</li>
+</ul>
+<pre class="hljs"><code><div>print(<span class="hljs-string">'Enter the name of cat 1:'</span>)
+catName1 = input()
+print(<span class="hljs-string">'Enter the name of cat 2:'</span>)
+catName2 = input()
+print(<span class="hljs-string">'Enter the name of cat 3:'</span>)
+catName3 = input()
+print(<span class="hljs-string">'Enter the name of cat 4:'</span>)
+catName4 = input()
+print(<span class="hljs-string">'Enter the name of cat 5:'</span>)
+catName5 = input()
+print(<span class="hljs-string">'Enter the name of cat 6:'</span>)
+catName6 = input()
+print(<span class="hljs-string">'The cat names are:'</span>)
+print(catName1 + <span class="hljs-string">' '</span> + catName2 + <span class="hljs-string">' '</span> + catName3 + <span class="hljs-string">' '</span> + catName4 + <span class="hljs-string">' '</span> +
+catName5 + <span class="hljs-string">' '</span> + catName6)
+</div></code></pre>
+<ul>
+<li>We can very easily improve the efficiency of this program by using lists:</li>
+</ul>
+<pre class="hljs"><code><div>catNames = []
+<span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:
+    print(<span class="hljs-string">'Enter the name of cat '</span> + str(len(catNames) + <span class="hljs-number">1</span>) +
+      <span class="hljs-string">' (Or enter nothing to stop.):'</span>)
+    name = input()
+    <span class="hljs-keyword">if</span> name == <span class="hljs-string">''</span>:
+        <span class="hljs-keyword">break</span>
+    catNames = catNames + [name] <span class="hljs-comment"># list concatenation</span>
+print(<span class="hljs-string">'The cat names are:'</span>)
+<span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> catNames:
+    print(<span class="hljs-string">'  '</span> + name)
+</div></code></pre>
+<h3 id="using-for-loops-with-lists">Using for Loops with Lists</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]:
+    print(i)
+</div></code></pre>
+<pre class="hljs"><code><div>0
+1
+2
+3
+</div></code></pre>
+<ul>
+<li>A common Python technique is to use <code>range(len(someList))</code> with a for loop to iterate over the indexes of a list</li>
+</ul>
+<pre class="hljs"><code><div>supplies = [<span class="hljs-string">'pens'</span>, <span class="hljs-string">'staplers'</span>, <span class="hljs-string">'flame-throwers'</span>, <span class="hljs-string">'binders'</span>]
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(supplies)):
+    print(<span class="hljs-string">'Index '</span> + str(i) + <span class="hljs-string">' in supplies is: '</span> + supplies[i])
+</div></code></pre>
+<pre class="hljs"><code><div>Index 0 in supplies is: pens
+Index 1 in supplies is: staplers
+Index 2 in supplies is: flame-throwers
+Index 3 in supplies is: binders
+</div></code></pre>
+<h3 id="the-in-and-not-in-operators">The in and not in Operators</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">'howdy'</span> <span class="hljs-keyword">in</span> [<span class="hljs-string">'hello'</span>, <span class="hljs-string">'hi'</span>, <span class="hljs-string">'howdy'</span>, <span class="hljs-string">'heyas'</span>]
+<span class="hljs-keyword">True</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam = [<span class="hljs-string">'hello'</span>, <span class="hljs-string">'hi'</span>, <span class="hljs-string">'howdy'</span>, <span class="hljs-string">'heyas'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">'cat'</span> <span class="hljs-keyword">in</span> spam
+<span class="hljs-keyword">False</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">'howdy'</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> spam
+<span class="hljs-keyword">False</span>
+&gt;&gt;&gt;<span class="hljs-string">'cat'</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> spam
+<span class="hljs-keyword">True</span>
+</div></code></pre>
+<pre class="hljs"><code><div>myPets = [<span class="hljs-string">'Zophie'</span>, <span class="hljs-string">'Pooka'</span>, <span class="hljs-string">'Fat-tail'</span>]
+print(<span class="hljs-string">'Enter a pet name:'</span>)
+name = input()
+<span class="hljs-keyword">if</span> name <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> myPets:
+    print(<span class="hljs-string">'I do not have a pet named '</span> + name)
+<span class="hljs-keyword">else</span>:
+    print(name + <span class="hljs-string">' is my pet.'</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>Enter a pet name:
+Footfoot
+I do not have a pet named Footfoot
+</div></code></pre>
+<h3 id="the-multiple-assignment-trick">The Multiple Assignment Trick</h3>
+<ul>
+<li>Instead of doing:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-meta">&gt;&gt;&gt; </span>cat = [<span class="hljs-string">'fat'</span>, <span class="hljs-string">'orange'</span>, <span class="hljs-string">'loud'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>size = cat[<span class="hljs-number">0</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>color = cat[<span class="hljs-number">1</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>disposition = cat[<span class="hljs-number">2</span>]
+</div></code></pre>
+<ul>
+<li>You could do this:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-meta">&gt;&gt;&gt; </span>cat = [<span class="hljs-string">'fat'</span>, <span class="hljs-string">'orange'</span>, <span class="hljs-string">'loud'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>size, color, disposition = cat
+</div></code></pre>
+<ul>
+<li>Note: The number of variables and the length of the list must be exactly equal or Python will return a <code>ValueError</code>:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-meta">&gt;&gt;&gt; </span>cat = [<span class="hljs-string">'fat'</span>, <span class="hljs-string">'orange'</span>, <span class="hljs-string">'loud'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>size, color, disposition, name = cat
+</div></code></pre>
+<pre class="hljs"><code><div>Traceback (most recent call last):
+  File &quot;&lt;pyshell#84&gt;&quot;, line 1, in &lt;module&gt;
+    size, color, disposition, name = cat
+ValueError: need more than 3 values to unpack
+</div></code></pre>
+<ul>
+<li>The multiple assignment trick can also be used to swap the values in two variables:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-meta">&gt;&gt;&gt; </span>a, b = <span class="hljs-string">'Alice'</span>, <span class="hljs-string">'Bob'</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>a, b = b, a
+<span class="hljs-meta">&gt;&gt;&gt; </span>print(a)
+<span class="hljs-string">'Bob'</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>print(b)
+<span class="hljs-string">'Alice'</span>
+</div></code></pre>
+<h3 id="augmented-assignment-operators">Augmented Assignment Operators</h3>
+<ul>
+<li><strong>Augmented asignment operators</strong> are a shortcut:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-meta">&gt;&gt;&gt; </span>spam = <span class="hljs-number">42</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam += <span class="hljs-number">1</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam
+<span class="hljs-number">43</span>
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th>Augmented assignment statement</th>
+<th>Equivalent assignment statement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>spam += 1</code></td>
+<td><code>spam = spam + 1</code></td>
+</tr>
+<tr>
+<td><code>spam -= 1</code></td>
+<td><code>spam = spam - 1</code></td>
+</tr>
+<tr>
+<td><code>spam *= 1</code></td>
+<td><code>spam = spam * 1</code></td>
+</tr>
+<tr>
+<td><code>spam /= 1</code></td>
+<td><code>spam = spam / 1</code></td>
+</tr>
+<tr>
+<td><code>spam %= 1</code></td>
+<td><code>spam = spam % 1</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The <code>+=</code> and <code>*=</code> operators can also work on strings and lists for concatenation and replication</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-meta">&gt;&gt;&gt; </span>spam = <span class="hljs-string">'Hello'</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam += <span class="hljs-string">' world!'</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>spam
+<span class="hljs-string">'Hello world!'</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-meta">&gt;&gt;&gt; </span>bacon = [<span class="hljs-string">'Zophie'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>bacon *= <span class="hljs-number">3</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>bacon
+[<span class="hljs-string">'Zophie'</span>, <span class="hljs-string">'Zophie'</span>, <span class="hljs-string">'Zophie'</span>]
+</div></code></pre>
+<h3 id="methods">Methods</h3>
+
+</body>
+</html>
