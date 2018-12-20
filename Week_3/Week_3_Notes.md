@@ -27,11 +27,11 @@ By the end of this week, you should be able to:
 
 [Boolean Introduction Video](https://www.youtube.com/watch?v=4XA9CKJJbr4)
 
-#### Boolean Values
+### Boolean Values
 
 + __Boolean__ data types have only two values `True` and `False`
 
-#### Comparison Operators
+### Comparison Operators
 
 + __Comparison Operators__ evaluate to a single boolean value
 
@@ -44,7 +44,7 @@ By the end of this week, you should be able to:
 |`<=`|`Less than or equal to`|
 |`>=`|`Greater than or equal to`|
 
-#### Boolean Operators
+### Boolean Operators
 
 + The three boolean operators are `and`, `or`, and `not`
 + Use them to compare boolean values
@@ -77,7 +77,7 @@ __not operator__
 
 ### Flow Control Part Two
 
-#### Elements of Flow Control
+### Elements of Flow Control
 
 __Conditions__
 
@@ -105,15 +105,15 @@ if name == 'Mary':
         print('Wrong password.')
 ```
 
-#### if Statements
+### if Statements
 
 + `if` statement will execute if statement's condition is `True`
 
-#### else Statements
+### else Statements
 
 + `else` statement can optionally follow an `if` clause
 
-#### elif Statements
+### elif Statements
 
 + Only one `if` or `else` clauses will execute, `elif` allows many possible clauses to execute
 + The `elif` statements are executed in order, and once one of them is found to be `True`, the rest of the `elif` clauses are automatically skipped

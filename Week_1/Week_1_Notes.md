@@ -39,7 +39,7 @@ By the end of this week, you should be able to:
 
 + Let's try to design an algorithm for a maze, that you could always follow to solve any maze.
 
-#### Maze Solution #1 - The Random Approach
+### Maze Solution #1 - The Random Approach
 
 __Random Walk Algorithm__
 
@@ -49,7 +49,7 @@ __Random Walk Algorithm__
 
 __Problem__: Can take a very long time
 
-#### Maze Solution #2 - Follow the right wall
+### Maze Solution #2 - Follow the right wall
 
 __Follow Right Wall Algorithm__
 
@@ -59,7 +59,7 @@ __Follow Right Wall Algorithm__
 
 __Problem__: May get stuck in some mazes, or Islands - correctness
 
-#### Maze Solution #3 - Tremauz's Algorithm
+### Maze Solution #3 - Tremauz's Algorithm
 
 __Tremaux's Algorithm__
 

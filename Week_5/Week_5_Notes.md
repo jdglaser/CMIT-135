@@ -457,3 +457,224 @@ ValueError: need more than 3 values to unpack
 ```
 
 ### Methods
+
++ A __method__ is the same thing as a function, except it is “called on” a value
+
+### Finding a Value in a List with the index() Method
+
++ List values hvae an `index()` method that can be passed a value, and if that value exists in the list, the index of the value is returned.
+
+```python
+>>> spam = ['hello', 'hi', 'howdy', 'heyas']
+>>> spam.index('hello')
+0
+>>> spam.index('heyas')
+3
+>>> spam.index('howdy howdy howdy')
+```
+
+```
+Traceback (most recent call last):
+  File "<pyshell#31>", line 1, in <module>
+    spam.index('howdy howdy howdy')
+ValueError: 'howdy howdy howdy' is not in list
+```
+
++ When there are duplicates of the value in the list, the index of its first appearance is returned
+
+```python
+>>> spam = ['Zophie', 'Pooka', 'Fat-tail', 'Pooka']
+>>> spam.index('Pooka')
+1
+```
+
+### Adding Values to Lists with the append() and insert() Methods
+
++ To add new values to a list, use the `append()` and  `insert()` methods
+
+```python
+>>> spam = ['cat', 'dog', 'bat']
+>>> spam.append('moose')
+>>> spam
+['cat', 'dog', 'bat', 'moose']
+```
+
+```python
+>>> spam = ['cat', 'dog', 'bat']
+>>> spam.insert(1, 'chicken')
+>>> spam
+['cat', 'chicken', 'dog', 'bat']
+```
+
++ Notice that the list is edited in place
++ Read more about this in [Mutable and Immutable Data Types](https://automatetheboringstuff.com/chapter4/#calibre_link-125)
++ These methods can only be called on list values
+
+```python
+>>> eggs = 'hello'
+>>> eggs.append('world')
+```
+
+```
+Traceback (most recent call last):
+  File "<pyshell#19>", line 1, in <module>
+    eggs.append('world')
+AttributeError: 'str' object has no attribute 'append'
+```
+
+### Removing Values from Lists with remove()
+
++ The `remove()` method is passed the value to be removed from the list it is called on
+
+```python
+>>> spam = ['cat', 'bat', 'rat', 'elephant']
+>>>spam.remove('bat')
+>>> spam
+['cat', 'rat', 'elephant']
+```
+
++ Attempting to delete a `value` that does not exist in the list will result in a ValueError error
+
+```python
+>>> spam = ['cat', 'bat', 'rat', 'elephant']
+>>> spam.remove('chicken')
+```
+
+```
+Traceback (most recent call last):
+  File "<pyshell#11>", line 1, in <module>
+    spam.remove('chicken')
+ValueError: list.remove(x): x not in list
+```
+
++ If the value appears multiple times in the list, only the first instance of the value will be removed.
+
+```python
+>>> spam = ['cat', 'bat', 'rat', 'cat', 'hat', 'cat']
+>>> spam.remove('cat')
+>>> spam
+['bat', 'rat', 'cat', 'hat', 'cat']
+```
+
+### Sorting the Values in a List with the sort() Method
+
++ Lists of number values or lists of strings can be sorted with the `sort()` method
+
+```python
+>>> spam = [2, 5, 3.14, 1, -7]
+>>> spam.sort()
+>>> spam
+[-7, 1, 2, 3.14, 5]
+>>> spam = ['ants', 'cats', 'dogs', 'badgers', 'elephants']
+>>> spam.sort()
+>>> spam
+['ants', 'badgers', 'cats', 'dogs', 'elephants']
+```
+
++ You can also pass `True` for the `reverse` keyword argument to have `sort()` sort the values in reverse order
+
+```python
+>>> spam.sort(reverse=True)
+>>> spam
+['elephants', 'dogs', 'cats', 'badgers', 'ants']
+```
+
++ You cannot sort lists that have both number values and string values in them
++ `sort()` uses “ASCIIbetical order” rather than actual alphabetical order for sorting strings. This means uppercase letters come before lowercase letters
+
+```python
+>>> spam = ['Alice', 'ants', 'Bob', 'badgers', 'Carol', 'cats']
+>>> spam.sort()
+>>> spam
+['Alice', 'Bob', 'Carol', 'ants', 'badgers', 'cats']
+```
+
++ If you need to sort the values in regular alphabetical order, pass str. lower for the key keyword argument in the sort() method call
+
+```python
+>>> spam = ['a', 'z', 'A', 'Z']
+>>> spam.sort(key=str.lower)
+>>> spam
+['a', 'A', 'z', 'Z']
+```
+
+### Tuples
+
++ Previously mentioned immutable vs. mutable data types are important for [Passing References](https://automatetheboringstuff.com/chapter4/#calibre_link-128)
++ An immutable form of the list data type is the __Tuple__
+
+```python
+>>> eggs = ('hello', 42, 0.5)
+>>> eggs[0]
+'hello'
+>>> eggs[1:3]
+(42, 0.5)
+>>> len(eggs)
+3
+```
+
++ Tuples are immutable, they cannot have their values modified, appended, or removed
+
+```python
+>>> eggs = ('hello', 42, 0.5)
+>>> eggs[1] = 99
+```
+
+```
+Traceback (most recent call last):
+  File "<pyshell#5>", line 1, in <module>
+    eggs[1] = 99
+TypeError: 'tuple' object does not support item assignment
+```
+
++ If you have only one value in your tuple, you can indicate this by placing a trailing comma after the value inside the parentheses
+  + If you don't do this, Python will think you’ve just typed a value inside regular parentheses
+
+```python
+>>> type(('hello',))
+<class 'tuple'>
+>>> type(('hello'))
+<class 'str'>
+```
+
+```python
+>>>tuple(['cat', 'dog', 5])
+('cat', 'dog', 5)
+>>> list(('cat', 'dog', 5))
+['cat', 'dog', 5]
+>>> list('hello')
+['h', 'e', 'l', 'l', 'o']
+```
+
+### References
+
++ When you assign a list to a variable, you are actually assigning a list __reference__ to the variable
+
+```python
+>>> spam = [0, 1, 2, 3, 4, 5]
+>>> cheese = spam
+>>> cheese[1] = 'Hello!'
+>>> spam
+[0, 'Hello!', 2, 3, 4, 5]
+>>> cheese
+[0, 'Hello!', 2, 3, 4, 5]
+```
+
++ The cheese and spam lists have changed
++ When the list is created, a reference is assigned to it in the spam variable
++ The next line copied only the reference in spam to cheese, not the list value itself
++ This means values stored in spam and cheese both refer to the same list
++ Use `copy()` or `deepcopy()` to get make a copy of the list
+
+```python
+>>> import copy
+>>> spam = ['A', 'B', 'C', 'D']
+>>> cheese = copy.copy(spam)
+>>> cheese[1] = 42
+>>> spam
+['A', 'B', 'C', 'D']
+>>> cheese
+['A', 42, 'C', 'D']
+```
+
+

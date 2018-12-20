@@ -533,6 +533,188 @@ Jimmy Five Times (4)
 </ul>
 <p><a href="https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/">The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets (No Excuses!)</a></p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/sqPTR_v4qFA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p><strong>UNICODE Domain Phishing Attacks</strong></p>
+<p><a href="https://www.grahamcluley.com/chrome-firefox-opera-users-vulnerable-unicode-domain-phishing-attacks/">Chrome, Firefox, and Opera users vulnerable to Unicode domain phishing attacks</a></p>
+<h3 id="cryptography">Cryptography</h3>
+<ul>
+<li>The science of writing secret codes is called <strong>cryptography</strong></li>
+<li>A secret code system is called a <strong>cipher</strong></li>
+<li>In cryptography, the message that we want to be secret is called <strong>plaintext</strong></li>
+</ul>
+<p>For example, the message could be:</p>
+<p><code>Hello there! The keys to the house are hidden under the flower pot.</code></p>
+<ul>
+<li>If we convert this plaintext into the encoded message we call it <strong>encrypting</strong> the plaintext</li>
+<li>The plaintext is encrypted into the <strong>ciphertext</strong></li>
+<li>If you know the cipher used to encrypt the message, you can <strong>decrypt</strong> the ciphertext back to the plaintext</li>
+<li>Many ciphers also use <strong>keys</strong> which are secret values that let you decrypt ciphertext that was encrypted using a specific cipher</li>
+</ul>
+<p>For more info in writing cryptography in Python see:</p>
+<p><a href="http://inventwithpython.com/hacking">Hacking Secret Ciphers with Python</a></p>
+<h3 id="the-caesar-cipher">The Caesar Cipher</h3>
+<ul>
+<li>Key for caesar cipher will be a number form 1 to 26</li>
+<li><strong>Caesar Cipher</strong> was one of the earliest ciphers ever invented</li>
+<li>In this cipher you encrypt a message by taking each letter (called symbols in cryptography) in the message and replacing it with a &quot;shifted&quot; letter</li>
+</ul>
+<img src="letter_shift.PNG" height="50%" width="50%">
+<h3 id="ascii-and-using-numbers-for-letters">ASCII, and Using Numbers for Letters</h3>
+<ul>
+<li>To implement the shifting of these symbols in code, we can represent each letter as a number called an <strong>ordinal</strong></li>
+<li>If you use ASCII you can to this easily</li>
+<li>With ASCII to shift &quot;A&quot; by three spaces, you:
+<ul>
+<li>Convert “A” to an ordinal (65).</li>
+<li>Add 3 to 65, to get 68.</li>
+<li>Convert the ordinal 68 back to a letter (“D”).</li>
+</ul>
+</li>
+</ul>
+<h3 id="the-chr-and-ord-functions">The chr() and ord() Functions</h3>
+<ul>
+<li>The <code>chr()</code> function takes an integer ordinal and returns a single-character string</li>
+<li>The <code>ord()</code> function takes a single character string, and returns the integer ordinal value</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-meta">&gt;&gt;&gt; </span>chr(<span class="hljs-number">65</span>)
+<span class="hljs-string">'A'</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>ord(<span class="hljs-string">'A'</span>)
+<span class="hljs-number">65</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>chr(<span class="hljs-number">65</span>+<span class="hljs-number">8</span>)
+<span class="hljs-string">'I'</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>chr(<span class="hljs-number">52</span>)
+<span class="hljs-string">'4'</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>chr(ord(<span class="hljs-string">'F'</span>))
+<span class="hljs-string">'F'</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>ord(chr(<span class="hljs-number">68</span>))
+<span class="hljs-number">68</span>
+</div></code></pre>
+<h3 id="code-for-caesar-cipher-in-python">Code for Caesar Cipher in Python</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">#Caesar Cypher Encryption</span>
+
+<span class="hljs-comment">#Get the message to encrypt from the user</span>
+print(<span class="hljs-string">'Enter your message:'</span>)
+unencryptedMessage = input()
+
+<span class="hljs-comment">#Get the encryption key from the user.  Note the error handling to make sure we have a number from 1-26</span>
+key=<span class="hljs-number">0</span>
+<span class="hljs-keyword">while</span> (key &lt; <span class="hljs-number">1</span> <span class="hljs-keyword">or</span> key &gt; <span class="hljs-number">26</span>):
+    print(<span class="hljs-string">'Enter the key number (1-26)'</span>)
+    key = int(input())
+
+print(<span class="hljs-string">'The key is '</span> + str(key))
+
+<span class="hljs-comment">#We will start with an empty string as our encryptedMessage</span>
+encryptedMessage = <span class="hljs-string">''</span>
+
+<span class="hljs-comment">#For each symbol in the unencryptedMessage we will add an encrypted symbol into the encryptedMessage</span>
+<span class="hljs-keyword">for</span> symbol <span class="hljs-keyword">in</span> unencryptedMessage:
+    <span class="hljs-keyword">if</span> symbol.isalpha():
+        num = ord(symbol)
+        num += key
+
+        <span class="hljs-keyword">if</span> symbol.isupper():
+            <span class="hljs-keyword">if</span> num &gt; ord(<span class="hljs-string">'Z'</span>):
+                num -= <span class="hljs-number">26</span>
+            <span class="hljs-keyword">elif</span> num &lt; ord(<span class="hljs-string">'A'</span>):
+                num += <span class="hljs-number">26</span>
+        <span class="hljs-keyword">elif</span> symbol.islower():
+            <span class="hljs-keyword">if</span> num &gt; ord(<span class="hljs-string">'z'</span>):
+                num -= <span class="hljs-number">26</span>
+            <span class="hljs-keyword">elif</span> num &lt; ord(<span class="hljs-string">'a'</span>):
+                num += <span class="hljs-number">26</span>
+
+        encryptedMessage += chr(num)
+    <span class="hljs-keyword">else</span>:
+        encryptedMessage += symbol
+
+print(<span class="hljs-string">"Your encrypted message is:"</span>)
+print(encryptedMessage)
+</div></code></pre>
+<p><strong>Example Run</strong>:</p>
+<pre class="hljs"><code><div>Enter your message:
+The wolves are coming!
+Enter the key number (1-26)
+4
+The key is 4
+Your encrypted message is:
+Xli aspziw evi gsqmrk!
+</div></code></pre>
+<h3 id="isalpha-string-method">isalpha() String Method</h3>
+<ul>
+<li><code>isalpha()</code> string method will return <code>True</code> if the string is an uppercase or lowercase letter form A to Z</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">'Hello'</span>.isalpha()
+<span class="hljs-keyword">True</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">'Forty two'</span>.isalpha()
+<span class="hljs-keyword">False</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">'Fortytwo'</span>.isalpha()
+<span class="hljs-keyword">True</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">'42'</span>.isalpha()
+<span class="hljs-keyword">False</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">''</span>.isalpha()
+<span class="hljs-keyword">False</span>
+</div></code></pre>
+<h3 id="isupper-islower-string-methods">isupper() islower() String Methods</h3>
+<ul>
+<li><code>isupper()</code> and <code>islower()</code> string methods will return <code>True</code> if string contains at least one uppercase letter, or one lowercase letter, respectively</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">'HELLO'</span>.isupper()
+<span class="hljs-keyword">True</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">'hello'</span>.isupper()
+<span class="hljs-keyword">False</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">'hello'</span>.islower()
+<span class="hljs-keyword">True</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">'Hello'</span>.islower()
+<span class="hljs-keyword">False</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">'LOOK OUT BEHIND YOU!'</span>.isupper()
+<span class="hljs-keyword">True</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">'42'</span>.isupper()
+<span class="hljs-keyword">False</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">'42'</span>.islower()
+<span class="hljs-keyword">False</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">''</span>.isupper()
+<span class="hljs-keyword">False</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">''</span>.islower()
+<span class="hljs-keyword">False</span>
+</div></code></pre>
+<h3 id="brute-force">Brute Force</h3>
+<ul>
+<li>Decrypting this message by brute force would only take 26 tries</li>
+<li>Consider the situation below where each possible key is tried</li>
+</ul>
+<pre class="hljs"><code><div>Lwcjba uig vwb jm xtmiaivb, jcb kmzbiqvbg qa ijaczl.
+
+Your translated text is:
+1 Kvbiaz thf uva il wslhzhua, iba jlyahpuaf pz hizbyk.
+2 Juahzy sge tuz hk vrkgygtz, haz ikxzgotze oy ghyaxj.
+3 Itzgyx rfd sty gj uqjfxfsy, gzy hjwyfnsyd nx fgxzwi.
+4 Hsyfxw qec rsx fi tpiewerx, fyx givxemrxc mw efwyvh.
+5 Grxewv pdb qrw eh sohdvdqw, exw fhuwdlqwb lv devxug.
+6 Fqwdvu oca pqv dg rngcucpv, dwv egtvckpva ku cduwtf.
+7 Epvcut nbz opu cf qmfbtbou, cvu dfsubjouz jt bctvse.
+8 Doubts may not be pleasant, but certainty is absurd.
+9 Cntasr lzx mns ad okdzrzms, ats bdqszhmsx hr zartqc.
+10 Bmszrq kyw lmr zc njcyqylr, zsr acpryglrw gq yzqspb.
+11 Alryqp jxv klq yb mibxpxkq, yrq zboqxfkqv fp xyproa.
+12 Zkqxpo iwu jkp xa lhawowjp, xqp yanpwejpu eo wxoqnz.
+13 Yjpwon hvt ijo wz kgzvnvio, wpo xzmovdiot dn vwnpmy.
+14 Xiovnm gus hin vy jfyumuhn, von wylnuchns cm uvmolx.
+15 Whnuml ftr ghm ux iextltgm, unm vxkmtbgmr bl tulnkw.
+16 Vgmtlk esq fgl tw hdwsksfl, tml uwjlsaflq ak stkmjv.
+17 Uflskj drp efk sv gcvrjrek, slk tvikrzekp zj rsjliu.
+18 Tekrji cqo dej ru fbuqiqdj, rkj suhjqydjo yi qrikht.
+19 Sdjqih bpn cdi qt eatphpci, qji rtgipxcin xh pqhjgs.
+20 Rciphg aom bch ps dzsogobh, pih qsfhowbhm wg opgifr.
+21 Qbhogf znl abg or cyrnfnag, ohg pregnvagl vf nofheq.
+22 Pagnfe ymk zaf nq bxqmemzf, ngf oqdfmuzfk ue mnegdp.
+23 Ozfmed xlj yze mp awpldlye, mfe npceltyej td lmdfco.
+24 Nyeldc wki xyd lo zvokckxd, led mobdksxdi sc klcebn.
+25 Mxdkcb vjh wxc kn yunjbjwc, kdc lnacjrwch rb jkbdam.
+26 Lwcjba uig vwb jm xtmiaivb, jcb kmzbiqvbg qa ijaczl.
+</div></code></pre>
+<ul>
+<li>We can see that 8 was probably the correct key because the sentence makes sense</li>
+</ul>
 
 </body>
 </html>

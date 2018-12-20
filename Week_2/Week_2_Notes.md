@@ -293,15 +293,15 @@ __The `str()`, `int()`, and `float()` functions__
 
 ### Binary Numbers
 
-#### Counting in Binary
+### Counting in Binary
 
 <img src="base-counting.PNG" width="50%" height="50%">
 
-#### Adding in Binary
+### Adding in Binary
 
 <img src="adding_binary.PNG" width="50%" height="50%">
 
-#### Binary in Python
+### Binary in Python
 
 ```python
 #Binary numbers in Python are always prepended with '0b'. 
